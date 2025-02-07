@@ -7,6 +7,39 @@ This module covers fundamental concepts of Linux operating system internals, ker
 ### Kernel Basics
 The kernel is the core of the operating system that manages hardware resources and provides essential services to applications.
 
+```mermaid
+graph TB
+    subgraph UserSpace
+        App1[Application 1]
+        App2[Application 2]
+        Lib[System Libraries]
+    end
+    
+    subgraph KernelSpace
+        Syscall[System Call Interface]
+        PM[Process Management]
+        MM[Memory Management]
+        VFS[Virtual File System]
+        Net[Network Stack]
+        Drivers[Device Drivers]
+        Arch[Architecture Code]
+    end
+    
+    subgraph HW[Hardware]
+        CPU[CPU]
+        Memory[Memory]
+        Devices[Devices]
+    end
+    
+    App1 --> Lib
+    App2 --> Lib
+    Lib --> Syscall
+    Syscall --> PM & MM & VFS & Net
+    PM & MM & VFS & Net --> Drivers
+    Drivers --> Arch
+    Arch --> CPU & Memory & Devices
+```
+
 - **Kernel Architecture**: The Linux kernel uses a monolithic architecture where all core functions (process management, memory management, file systems, device drivers) run in kernel space. It's modular, allowing components to be loaded/unloaded at runtime.
 
 - **System Calls**: These are the interface between user applications and kernel services. When an application needs to perform privileged operations (like reading a file or creating a process), it makes a system call. Common system calls include:
@@ -38,6 +71,33 @@ The kernel is the core of the operating system that manages hardware resources a
 
 ### Memory Management
 How the kernel manages system memory and provides memory isolation between processes.
+
+```mermaid
+graph TB
+    subgraph VM[Virtual Memory]
+        Code[Code Segment]
+        Data[Data Segment]
+        Heap[Heap]
+        Stack[Stack]
+    end
+    
+    subgraph MMU[Memory Management]
+        PT[Page Tables]
+        TLB[TLB Cache]
+    end
+    
+    subgraph PM[Physical Memory]
+        RAM[Physical RAM]
+        Cache[CPU Cache]
+    end
+    
+    Code & Data & Heap & Stack --> PT
+    PT --> TLB
+    TLB --> RAM
+    TLB --> Cache
+    RAM --> Swap((Swap Space))
+    Swap --> RAM
+```
 
 - **Virtual Memory**: Provides each process with its own address space, separated from physical memory:
   - Process sees continuous memory space
@@ -71,6 +131,22 @@ How the kernel manages system memory and provides memory isolation between proce
 
 ### Process Management
 How the kernel manages and schedules running programs.
+
+```mermaid
+stateDiagram-v2
+    [*] --> Created
+    Created --> Ready
+    Ready --> Running
+    Running --> Ready
+    Running --> Blocked
+    Blocked --> Ready
+    Running --> [*]
+    
+    note right of Created: fork()
+    note right of Ready: In Memory
+    note right of Running: CPU Execution
+    note right of Blocked: I/O Wait
+```
 
 - **Process Scheduling**: Determines which process runs on CPU:
   - Completely Fair Scheduler (CFS)
@@ -107,6 +183,24 @@ How the kernel manages and schedules running programs.
 ### File System
 How the kernel manages files and storage.
 
+```mermaid
+graph TB
+    App[Application] --> POSIX[File Operations]
+    POSIX --> VFS[Virtual FS]
+    
+    subgraph FS[File Systems]
+        VFS --> Cache[Buffer Cache]
+        VFS --> Inodes[Inode Cache]
+        VFS --> EXT4[EXT4]
+        VFS --> XFS[XFS]
+        VFS --> NFS[NFS]
+    end
+    
+    Cache & Inodes & EXT4 & XFS & NFS --> IO[I/O Scheduler]
+    IO --> Block[Block Driver]
+    Block --> Storage((Storage Devices))
+```
+
 - **VFS (Virtual File System)**: Abstract layer for different filesystems:
   - Common interface for all filesystems
   - Supports local and network filesystems
@@ -140,6 +234,25 @@ How the kernel manages files and storage.
 
 ### Network Stack
 How the kernel handles network communications.
+
+```mermaid
+graph TB
+    App[Application] --> Socket[Socket API]
+    
+    subgraph Transport[Transport Layer]
+        Socket --> TCP[TCP]
+        Socket --> UDP[UDP]
+    end
+    
+    subgraph Network[Network Layer]
+        TCP & UDP --> IP[IP Protocol]
+        IP --> Route[Routing]
+        IP --> Filter[Netfilter]
+    end
+    
+    Route & Filter --> Driver[Network Driver]
+    Driver --> NIC[Network Card]
+```
 
 - **Protocol Layers**: Implementation of network protocols:
   - Physical and Data Link (drivers)
@@ -175,6 +288,31 @@ How the kernel handles network communications.
 
 ### System Resources
 How the kernel manages and allocates system resources.
+
+```mermaid
+graph TB
+    subgraph RM[Resource Management]
+        CPU[CPU Scheduler]
+        Mem[Memory Manager]
+        IO[I/O Scheduler]
+    end
+    
+    subgraph Control[Control Mechanisms]
+        CG[Control Groups]
+        RL[Resource Limits]
+        QoS[QoS]
+    end
+    
+    subgraph Mon[Monitoring]
+        Stats[Statistics]
+        Perf[Performance]
+        Trace[Tracing]
+    end
+    
+    CPU & Mem & IO --> CG & RL & QoS
+    CG & RL & QoS --> Stats & Perf & Trace
+    Stats & Perf & Trace --> CPU & Mem & IO
+```
 
 - **CPU Management**: Processor resource control:
   - Frequency scaling
