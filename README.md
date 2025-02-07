@@ -77,6 +77,15 @@ Welcome to a comprehensive shell scripting tutorial designed for Mac OS and Linu
    - Process substitution patterns
    - Advanced shell patterns and idioms
 
+12. **Process Management**
+   - Process basics and lifecycle
+   - Job control and monitoring
+   - Signal handling and traps
+   - Resource limits and management
+   - Inter-process communication (IPC)
+   - Process monitoring and profiling
+   - Signal trapping patterns
+
 ## How to Use This Tutorial
 
 Each module contains:
