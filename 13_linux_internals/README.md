@@ -69,6 +69,82 @@ graph TB
   - Software interrupts (system calls)
   - Interrupt handlers (ISRs)
 
+### Common System Calls
+
+| System Call | Description | Example Usage |
+|------------|-------------|---------------|
+| `fork()` | Create a new process | Process creation |
+| `exec()` | Execute a program | Running commands |
+| `exit()` | Terminate process | Program termination |
+| `open()` | Open a file | File operations |
+| `close()` | Close a file descriptor | Resource cleanup |
+| `read()` | Read from file/socket | Data input |
+| `write()` | Write to file/socket | Data output |
+| `socket()` | Create network socket | Network communication |
+| `connect()` | Connect to network | Client connections |
+| `accept()` | Accept connections | Server operations |
+| `mmap()` | Map memory | Memory management |
+| `brk()`/`sbrk()` | Change heap size | Memory allocation |
+| `signal()` | Signal handling | Process communication |
+| `kill()` | Send signal | Process control |
+| `wait()` | Wait for child process | Process synchronization |
+| `pipe()` | Create pipe | IPC mechanism |
+| `select()` | I/O multiplexing | Async I/O |
+| `ioctl()` | Device control | Hardware interaction |
+| `chmod()` | Change permissions | File security |
+| `chown()` | Change ownership | File ownership |
+
+### Common Signals
+
+| Signal | Number | Description | Default Action | Can Be Caught/Ignored |
+|--------|---------|-------------|----------------|---------------------|
+| `SIGHUP` | 1 | Hangup | Terminate | Yes |
+| `SIGINT` | 2 | Interrupt (Ctrl+C) | Terminate | Yes |
+| `SIGQUIT` | 3 | Quit (Ctrl+\) | Core Dump | Yes |
+| `SIGILL` | 4 | Illegal instruction | Core Dump | Yes |
+| `SIGABRT` | 6 | Abort | Core Dump | Yes |
+| `SIGFPE` | 8 | Floating point error | Core Dump | Yes |
+| `SIGKILL` | 9 | Kill | Terminate | No |
+| `SIGSEGV` | 11 | Segmentation fault | Core Dump | Yes |
+| `SIGPIPE` | 13 | Broken pipe | Terminate | Yes |
+| `SIGALRM` | 14 | Timer signal | Terminate | Yes |
+| `SIGTERM` | 15 | Termination | Terminate | Yes |
+| `SIGUSR1` | 10 | User-defined 1 | Terminate | Yes |
+| `SIGUSR2` | 12 | User-defined 2 | Terminate | Yes |
+| `SIGCHLD` | 17 | Child stopped/terminated | Ignore | Yes |
+| `SIGCONT` | 18 | Continue if stopped | Continue | Yes |
+| `SIGSTOP` | 19 | Stop process | Stop | No |
+| `SIGTSTP` | 20 | Stop from terminal | Stop | Yes |
+| `SIGTTIN` | 21 | Terminal input | Stop | Yes |
+| `SIGTTOU` | 22 | Terminal output | Stop | Yes |
+
+Signal handling example:
+```c
+#include <signal.h>
+
+void signal_handler(int signum) {
+    switch(signum) {
+        case SIGINT:
+            printf("Caught interrupt signal\n");
+            break;
+        case SIGTERM:
+            printf("Caught termination signal\n");
+            break;
+    }
+}
+
+int main() {
+    // Register signal handlers
+    signal(SIGINT, signal_handler);
+    signal(SIGTERM, signal_handler);
+    
+    while(1) {
+        // Program loop
+    }
+    return 0;
+}
+```
+
 ### Memory Management
 How the kernel manages system memory and provides memory isolation between processes.
 
