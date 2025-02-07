@@ -86,6 +86,18 @@ Welcome to a comprehensive shell scripting tutorial designed for Mac OS and Linu
    - Process monitoring and profiling
    - Signal trapping patterns
 
+13. **Linux OS and Kernel Internals**
+   - Kernel architecture and system calls
+   - Memory management (virtual memory, paging)
+   - Process management and scheduling
+   - File systems and I/O operations
+   - Network stack and protocols
+   - System resources and performance
+   - Kernel tracing and debugging
+   - Essential Linux commands and tools
+   - Real-world system administration tasks
+   - Performance monitoring and tuning
+
 ## How to Use This Tutorial
 
 Each module contains:

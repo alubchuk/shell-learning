@@ -206,6 +206,50 @@ How the kernel manages and allocates system resources.
   - Sysctl settings
   - Performance monitoring
 
+## Further Reading
+
+### Kernel Basics
+- [Linux Kernel Documentation](https://www.kernel.org/doc/html/latest/) - Official Linux kernel documentation
+- [Linux Kernel Development (Book)](https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468) - Comprehensive guide by Robert Love
+- [Linux Kernel Teaching](https://linux-kernel-labs.github.io/refs/heads/master/) - Educational resources for kernel development
+- [The Linux Programming Interface](https://man7.org/tlpi/) - Comprehensive guide to Linux/UNIX system programming
+
+### Memory Management
+- [Understanding the Linux Virtual Memory Manager](https://www.kernel.org/doc/gorman/) - Detailed explanation of VM subsystem
+- [Linux Memory Management Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/) - Official memory management docs
+- [Linux Page Cache](https://www.thomas-krenn.com/en/wiki/Linux_Page_Cache_Basics) - Detailed explanation of page cache
+- [OOM Killer Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/oom_killer.html) - Understanding the OOM killer
+
+### Process Management
+- [Linux Process Management](https://www.kernel.org/doc/html/latest/admin-guide/pm/) - Official process management docs
+- [Linux Scheduler Documentation](https://www.kernel.org/doc/html/latest/scheduler/) - Detailed scheduler information
+- [Control Groups Documentation](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html) - Understanding cgroups v2
+- [Linux Namespaces](https://lwn.net/Articles/531114/) - Deep dive into Linux namespaces
+
+### File System
+- [Linux Filesystem Documentation](https://www.kernel.org/doc/html/latest/filesystems/) - Official filesystem docs
+- [Linux VFS Documentation](https://www.kernel.org/doc/html/latest/filesystems/vfs.html) - Virtual File System details
+- [ext4 Documentation](https://www.kernel.org/doc/html/latest/filesystems/ext4/) - Comprehensive ext4 filesystem guide
+- [Linux Storage Stack Diagram](https://www.thomas-krenn.com/en/wiki/Linux_Storage_Stack_Diagram) - Visual guide to storage stack
+
+### Network Stack
+- [Linux Networking Documentation](https://www.kernel.org/doc/html/latest/networking/) - Official networking docs
+- [Linux Network Stack](https://wiki.linuxfoundation.org/networking/start) - Linux Foundation networking guide
+- [Netfilter Documentation](https://www.netfilter.org/documentation/) - Deep dive into packet filtering
+- [Linux Advanced Routing](https://lartc.org/) - Advanced routing & traffic control
+
+### System Resources
+- [Linux Performance](http://www.brendangregg.com/linuxperf.html) - Brendan Gregg's Linux performance resources
+- [Linux Performance Analysis Tools](http://techblog.netflix.com/2015/11/linux-performance-analysis-in-60s.html) - Netflix's guide to performance analysis
+- [Linux System Monitoring](https://www.kernel.org/doc/html/latest/admin-guide/monitoring/) - Official monitoring documentation
+- [Linux Tracing Technologies](https://www.kernel.org/doc/html/latest/trace/) - Kernel tracing documentation
+
+### Additional Resources
+- [Linux Kernel Map](https://makelinux.github.io/kernel/map/) - Interactive map of Linux kernel
+- [Linux Kernel Newbies](https://kernelnewbies.org/) - Resources for kernel beginners
+- [LWN.net](https://lwn.net/) - Linux Weekly News, excellent technical articles
+- [Linux Performance Tools](http://www.brendangregg.com/Perf/linux_perf_tools_full.png) - Complete performance tools map
+
 ## Examples in this Module
 
 1. `01_kernel_info.sh`: Kernel information and management
