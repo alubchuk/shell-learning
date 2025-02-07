@@ -344,49 +344,207 @@ graph TB
   - Sysctl settings
   - Performance monitoring
 
-## Further Reading
+## Best Practices
 
-### Kernel Basics
-- [Linux Kernel Documentation](https://www.kernel.org/doc/html/latest/) - Official Linux kernel documentation
-- [Linux Kernel Development (Book)](https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468) - Comprehensive guide by Robert Love
-- [Linux Kernel Teaching](https://linux-kernel-labs.github.io/refs/heads/master/) - Educational resources for kernel development
-- [The Linux Programming Interface](https://man7.org/tlpi/) - Comprehensive guide to Linux/UNIX system programming
+### System Security
+- **Principle of Least Privilege**
+  - Use non-root users whenever possible
+  - Configure sudo access with specific permissions
+  - Implement role-based access control (RBAC)
 
-### Memory Management
-- [Understanding the Linux Virtual Memory Manager](https://www.kernel.org/doc/gorman/) - Detailed explanation of VM subsystem
-- [Linux Memory Management Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/) - Official memory management docs
-- [Linux Page Cache](https://www.thomas-krenn.com/en/wiki/Linux_Page_Cache_Basics) - Detailed explanation of page cache
-- [OOM Killer Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/oom_killer.html) - Understanding the OOM killer
+- **File System Security**
+  - Set appropriate file permissions (chmod, chown)
+  - Use ACLs for fine-grained access control
+  - Regularly audit file permissions with `find` and `stat`
 
-### Process Management
-- [Linux Process Management](https://www.kernel.org/doc/html/latest/admin-guide/pm/) - Official process management docs
-- [Linux Scheduler Documentation](https://www.kernel.org/doc/html/latest/scheduler/) - Detailed scheduler information
-- [Control Groups Documentation](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html) - Understanding cgroups v2
-- [Linux Namespaces](https://lwn.net/Articles/531114/) - Deep dive into Linux namespaces
+- **Network Security**
+  - Configure firewall rules using iptables/nftables
+  - Use SSH key authentication instead of passwords
+  - Regularly monitor network connections with `netstat`/`ss`
 
-### File System
-- [Linux Filesystem Documentation](https://www.kernel.org/doc/html/latest/filesystems/) - Official filesystem docs
-- [Linux VFS Documentation](https://www.kernel.org/doc/html/latest/filesystems/vfs.html) - Virtual File System details
-- [ext4 Documentation](https://www.kernel.org/doc/html/latest/filesystems/ext4/) - Comprehensive ext4 filesystem guide
-- [Linux Storage Stack Diagram](https://www.thomas-krenn.com/en/wiki/Linux_Storage_Stack_Diagram) - Visual guide to storage stack
+### Performance Optimization
+- **Memory Management**
+  - Monitor memory usage with `free`, `vmstat`
+  - Configure swap space appropriately
+  - Use huge pages for large memory applications
 
-### Network Stack
-- [Linux Networking Documentation](https://www.kernel.org/doc/html/latest/networking/) - Official networking docs
-- [Linux Network Stack](https://wiki.linuxfoundation.org/networking/start) - Linux Foundation networking guide
-- [Netfilter Documentation](https://www.netfilter.org/documentation/) - Deep dive into packet filtering
-- [Linux Advanced Routing](https://lartc.org/) - Advanced routing & traffic control
+- **CPU Optimization**
+  - Set appropriate process priorities with `nice`
+  - Use CPU affinity for critical processes
+  - Monitor CPU usage patterns with `top`/`htop`
 
-### System Resources
-- [Linux Performance](http://www.brendangregg.com/linuxperf.html) - Brendan Gregg's Linux performance resources
-- [Linux Performance Analysis Tools](http://techblog.netflix.com/2015/11/linux-performance-analysis-in-60s.html) - Netflix's guide to performance analysis
-- [Linux System Monitoring](https://www.kernel.org/doc/html/latest/admin-guide/monitoring/) - Official monitoring documentation
-- [Linux Tracing Technologies](https://www.kernel.org/doc/html/latest/trace/) - Kernel tracing documentation
+- **I/O Performance**
+  - Use appropriate I/O schedulers
+  - Monitor I/O patterns with `iostat`
+  - Implement disk quotas where needed
 
-### Additional Resources
-- [Linux Kernel Map](https://makelinux.github.io/kernel/map/) - Interactive map of Linux kernel
-- [Linux Kernel Newbies](https://kernelnewbies.org/) - Resources for kernel beginners
-- [LWN.net](https://lwn.net/) - Linux Weekly News, excellent technical articles
-- [Linux Performance Tools](http://www.brendangregg.com/Perf/linux_perf_tools_full.png) - Complete performance tools map
+### System Monitoring
+- **Resource Monitoring**
+  - Set up monitoring tools (Nagios, Prometheus)
+  - Configure alerting thresholds
+  - Maintain historical performance data
+
+- **Log Management**
+  - Centralize logs with rsyslog/journald
+  - Implement log rotation
+  - Use log analysis tools (ELK stack)
+
+### Backup and Recovery
+- **Backup Strategy**
+  - Regular system backups
+  - Configuration file backups
+  - Test restore procedures
+
+## Common Use Cases
+
+### System Administration
+
+1. **Performance Troubleshooting**
+   ```bash
+   # CPU usage analysis
+   top -b -n 1
+   
+   # Memory usage
+   free -m
+   vmstat 1 10
+   
+   # Disk I/O
+   iostat -xz 1 10
+   
+   # Network traffic
+   iftop -P
+   ```
+
+2. **Security Hardening**
+   ```bash
+   # Find SUID/SGID files
+   find / -type f \( -perm -4000 -o -perm -2000 \) -exec ls -l {} \;
+   
+   # Check for open ports
+   ss -tuln
+   
+   # Monitor authentication attempts
+   tail -f /var/log/auth.log
+   ```
+
+3. **Resource Management**
+   ```bash
+   # Set process priority
+   renice -n 10 -p $PID
+   
+   # Set CPU affinity
+   taskset -pc 0-2 $PID
+   
+   # Limit process resources
+   ulimit -n 4096
+   ```
+
+### Kernel Operations
+
+1. **Module Management**
+   ```bash
+   # List loaded modules
+   lsmod
+   
+   # Load a module with parameters
+   modprobe module_name parameter=value
+   
+   # Remove a module
+   rmmod module_name
+   ```
+
+2. **System Tuning**
+   ```bash
+   # View kernel parameters
+   sysctl -a
+   
+   # Modify kernel parameter
+   sysctl -w vm.swappiness=60
+   
+   # Make changes permanent
+   echo "vm.swappiness=60" >> /etc/sysctl.conf
+   ```
+
+3. **Debugging**
+   ```bash
+   # System call tracing
+   strace command
+   
+   # Kernel message monitoring
+   dmesg -w
+   
+   # Process debugging
+   gdb -p $PID
+   ```
+
+### Network Operations
+
+1. **Traffic Analysis**
+   ```bash
+   # Capture network traffic
+   tcpdump -i eth0 -n
+   
+   # Monitor bandwidth
+   iftop -i eth0
+   
+   # Connection tracking
+   conntrack -L
+   ```
+
+2. **Firewall Management**
+   ```bash
+   # List firewall rules
+   iptables -L -n -v
+   
+   # Add new rule
+   iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+   
+   # Save rules
+   iptables-save > /etc/iptables/rules.v4
+   ```
+
+### File System Operations
+
+1. **Storage Management**
+   ```bash
+   # Disk usage analysis
+   du -sh /*
+   
+   # Find large files
+   find / -type f -size +100M -exec ls -lh {} \;
+   
+   # Monitor file system events
+   inotifywait -m /path/to/watch
+   ```
+
+2. **File System Maintenance**
+   ```bash
+   # Check file system
+   fsck -f /dev/sda1
+   
+   # Monitor I/O operations
+   iotop -o
+   
+   # Disk space monitoring
+   df -h
+   ```
+
+## Key Commands and Tools
+- `uname`: System and kernel information
+- `lsmod`: List kernel modules
+- `sysctl`: Kernel parameters
+- `dmesg`: Kernel messages
+- `proc`: Process information
+- `vmstat`: Virtual memory statistics
+- `iostat`: I/O statistics
+- `netstat`: Network statistics
+- `strace`: System call tracing
+- `perf`: Performance analysis
+- `ftrace`: Function tracing
+- `sar`: System activity reporter
+- `lsof`: List open files
+- `ss`: Socket statistics
+- `ip`: Network configuration
 
 ## Examples in this Module
 
@@ -439,43 +597,47 @@ graph TB
    - Debug information
    - Error analysis
 
-## Best Practices
-- Regular system monitoring
-- Proactive resource management
-- Security considerations
-- Performance optimization
-- Proper logging and debugging
-- Backup and recovery procedures
 
-## Common Use Cases
-- System performance analysis
-- Resource optimization
-- Troubleshooting
-- Security hardening
-- Capacity planning
-- System tuning
+## Further Reading
 
-## Key Commands and Tools
-- `uname`: System and kernel information
-- `lsmod`: List kernel modules
-- `sysctl`: Kernel parameters
-- `dmesg`: Kernel messages
-- `proc`: Process information
-- `vmstat`: Virtual memory statistics
-- `iostat`: I/O statistics
-- `netstat`: Network statistics
-- `strace`: System call tracing
-- `perf`: Performance analysis
-- `ftrace`: Function tracing
-- `sar`: System activity reporter
-- `lsof`: List open files
-- `ss`: Socket statistics
-- `ip`: Network configuration
+### Kernel Basics
+- [Linux Kernel Documentation](https://www.kernel.org/doc/html/latest/) - Official Linux kernel documentation
+- [Linux Kernel Development (Book)](https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468) - Comprehensive guide by Robert Love
+- [Linux Kernel Teaching](https://linux-kernel-labs.github.io/refs/heads/master/) - Educational resources for kernel development
+- [The Linux Programming Interface](https://man7.org/tlpi/) - Comprehensive guide to Linux/UNIX system programming
 
-## Additional Resources
-- Linux kernel documentation
-- System administration guides
-- Performance tuning guides
-- Security best practices
-- Troubleshooting guides
-- Community forums and wikis
+### Memory Management
+- [Understanding the Linux Virtual Memory Manager](https://www.kernel.org/doc/gorman/) - Detailed explanation of VM subsystem
+- [Linux Memory Management Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/) - Official memory management docs
+- [Linux Page Cache](https://www.thomas-krenn.com/en/wiki/Linux_Page_Cache_Basics) - Detailed explanation of page cache
+- [OOM Killer Documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/oom_killer.html) - Understanding the OOM killer
+
+### Process Management
+- [Linux Process Management](https://www.kernel.org/doc/html/latest/admin-guide/pm/) - Official process management docs
+- [Linux Scheduler Documentation](https://www.kernel.org/doc/html/latest/scheduler/) - Detailed scheduler information
+- [Control Groups Documentation](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html) - Understanding cgroups v2
+- [Linux Namespaces](https://lwn.net/Articles/531114/) - Deep dive into Linux namespaces
+
+### File System
+- [Linux Filesystem Documentation](https://www.kernel.org/doc/html/latest/filesystems/) - Official filesystem docs
+- [Linux VFS Documentation](https://www.kernel.org/doc/html/latest/filesystems/vfs.html) - Virtual File System details
+- [ext4 Documentation](https://www.kernel.org/doc/html/latest/filesystems/ext4/) - Comprehensive ext4 filesystem guide
+- [Linux Storage Stack Diagram](https://www.thomas-krenn.com/en/wiki/Linux_Storage_Stack_Diagram) - Visual guide to storage stack
+
+### Network Stack
+- [Linux Networking Documentation](https://www.kernel.org/doc/html/latest/networking/) - Official networking docs
+- [Linux Network Stack](https://wiki.linuxfoundation.org/networking/start) - Linux Foundation networking guide
+- [Netfilter Documentation](https://www.netfilter.org/documentation/) - Deep dive into packet filtering
+- [Linux Advanced Routing](https://lartc.org/) - Advanced routing & traffic control
+
+### System Resources
+- [Linux Performance](http://www.brendangregg.com/linuxperf.html) - Brendan Gregg's Linux performance resources
+- [Linux Performance Analysis Tools](http://techblog.netflix.com/2015/11/linux-performance-analysis-in-60s.html) - Netflix's guide to performance analysis
+- [Linux System Monitoring](https://www.kernel.org/doc/html/latest/admin-guide/monitoring/) - Official monitoring documentation
+- [Linux Tracing Technologies](https://www.kernel.org/doc/html/latest/trace/) - Kernel tracing documentation
+
+### Additional Resources
+- [Linux Kernel Map](https://makelinux.github.io/kernel/map/) - Interactive map of Linux kernel
+- [Linux Kernel Newbies](https://kernelnewbies.org/) - Resources for kernel beginners
+- [LWN.net](https://lwn.net/) - Linux Weekly News, excellent technical articles
+- [Linux Performance Tools](http://www.brendangregg.com/Perf/linux_perf_tools_full.png) - Complete performance tools map
