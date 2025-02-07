@@ -1,0 +1,23 @@
+This is a sample text file for practicing text processing.
+It contains multiple lines with different content.
+Some lines have numbers like 123 and 456.
+Other lines have email addresses like john@example.com or mary@example.com.
+There are also dates like 2024-02-07 and 2024-03-15.
+SOME LINES ARE IN UPPERCASE.
+some lines are in lowercase.
+Mixed Case Lines Are Also Present.
+Special characters: !@#$%^&*()
+URLs: https://www.example.com and http://test.com
+Duplicate line for testing.
+Duplicate line for testing.
+    This line has leading spaces.
+This line has trailing spaces.    
+1. First item in a list
+2. Second item in a list
+3. Third item in a list
+#Comment lines start with hash
+//Comment lines might start with slashes
+/* Multi-line comment style
+   continues here
+   and ends here */
+END OF FILE
