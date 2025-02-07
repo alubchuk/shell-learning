@@ -49,6 +49,20 @@ Welcome to a comprehensive shell scripting tutorial designed for Mac OS and Linu
    - Plugin architecture
    - Task automation
 
+8. **Essential Tools**
+   - Find command mastery
+   - Text processing (tr, cut)
+   - File operations (touch)
+   - Network diagnostics
+   - System monitoring
+
+9. **Web Tools**
+   - curl basics and advanced usage
+   - wget basics and advanced usage
+   - API testing and automation
+   - Website monitoring and backup
+   - Batch download management
+
 ## How to Use This Tutorial
 
 Each module contains:
