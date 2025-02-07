@@ -63,6 +63,13 @@ Welcome to a comprehensive shell scripting tutorial designed for Mac OS and Linu
    - Website monitoring and backup
    - Batch download management
 
+10. **Regular Expressions**
+   - Basic regex patterns and usage
+   - grep features and examples
+   - sed text processing
+   - awk programming
+   - Log analysis framework
+
 ## How to Use This Tutorial
 
 Each module contains:
