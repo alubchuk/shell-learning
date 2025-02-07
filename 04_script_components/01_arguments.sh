@@ -189,6 +189,62 @@ process_list() {
     fi
 }
 
+# Demonstrate the shift command
+echo "3. Using the shift command:"
+
+# Function to demonstrate basic shift
+demonstrate_shift() {
+    local args=($@)
+    echo "Initial arguments: ${args[@]}"
+    echo "Initial argument count: $#"
+    
+    shift  # Shift one position left
+    echo "After shift 1: $@"
+    echo "Remaining argument count: $#"
+    
+    if [ $# -ge 2 ]; then
+        shift 2  # Shift two positions left
+        echo "After shift 2: $@"
+        echo "Remaining argument count: $#"
+    fi
+}
+
+# Function to demonstrate shift in argument processing
+process_with_shift() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --name)
+                if [ -n "$2" ]; then
+                    echo "Name: $2"
+                    shift 2  # Skip both --name and its value
+                else
+                    echo "Error: --name requires a value"
+                    exit 1
+                fi
+                ;;
+            --verbose)
+                echo "Verbose mode enabled"
+                shift   # Skip --verbose
+                ;;
+            --*)
+                echo "Unknown option: $1"
+                shift
+                ;;
+            *)
+                echo "Processing argument: $1"
+                shift
+                ;;
+        esac
+    done
+}
+
+# Example usage of shift demonstrations
+echo "Basic shift demonstration:"
+demonstrate_shift arg1 arg2 arg3 arg4
+
+echo "\nArgument processing with shift:"
+process_with_shift --name "John Doe" --verbose extra_arg
+
 # Display final configuration
 show_configuration() {
     cat << EOF

@@ -12,6 +12,17 @@ This module covers essential components and features that make shell scripts mor
   - `$@`: All arguments as separate strings
   - `$*`: All arguments as a single string
 
+### Argument Manipulation
+- The `shift` command:
+  - Shifts positional parameters to the left
+  - Default shift count is 1
+  - `shift n` shifts n positions
+  - Reduces `$#` accordingly
+  - Common uses:
+    - Processing arguments in loops
+    - Handling variable argument lists
+    - Implementing custom option parsing
+
 ### Option Processing
 - `getopts` built-in command
 - Long options with `getopt`
@@ -20,6 +31,28 @@ This module covers essential components and features that make shell scripts mor
   - Options with values (-f value)
   - Long options (--file=value)
 
+### Example Usage
+```bash
+# Basic shift
+while [ $# -gt 0 ]; do
+    echo "Processing: $1"
+    shift
+done
+
+# Shift with named parameters
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --name)
+            name="$2"
+            shift 2  # Skip both --name and its value
+            ;;
+        --flag)
+            flag=true
+            shift    # Skip flag
+            ;;
+    esac
+done
+```
 ## Environment Variables
 
 ### System Environment
