@@ -1,8 +1,8 @@
 # Module 8: Essential Command-Line Tools
 
-This module covers essential command-line tools and networking commands that are crucial for system administration and text processing.
+This module covers essential command-line tools and networking commands that are crucial for system administration, text processing, and file operations.
 
-## File Operations
+## File Operations and Viewing
 
 ### find
 - Basic syntax and usage
@@ -11,12 +11,33 @@ This module covers essential command-line tools and networking commands that are
 - Complex search patterns
 - Performance considerations
 
-### touch
-- Create new files
-- Update timestamps
-- Batch file creation
-- Access and modification times
-- Common use cases
+### ls
+- List directory contents
+- Different display formats
+- Sorting options
+- File permissions and ownership
+- Advanced listing features
+
+### mkdir
+- Create directories
+- Create nested directories
+- Set permissions
+- Directory organization patterns
+- Batch directory creation
+
+### cat
+- Display file contents
+- Concatenate files
+- Number lines
+- Show special characters
+- Create files with input
+
+### head/tail
+- View file beginnings/endings
+- Follow file changes
+- Custom line counts
+- Multiple file handling
+- Real-time monitoring
 
 ## Text Processing Tools
 
@@ -33,6 +54,57 @@ This module covers essential command-line tools and networking commands that are
 - Character-based cutting
 - Byte-based cutting
 - Integration with other tools
+
+### sort
+- Basic sorting
+- Numeric sorting
+- Reverse sorting
+- Sort by fields
+- Custom sort orders
+
+### uniq
+- Remove duplicates
+- Count occurrences
+- Show only duplicates
+- Show only unique lines
+- Field-based uniqueness
+
+### diff
+- Compare files
+- Directory comparison
+- Context and unified formats
+- Ignore patterns
+- Create and apply patches
+
+### tee
+- Split output streams
+- Log while viewing
+- Multiple output files
+- Pipeline debugging
+- Real-time logging
+
+## System Monitoring and Time
+
+### top
+- Process monitoring
+- Resource usage
+- Sort by different metrics
+- Interactive commands
+- Batch mode operation
+
+### timeout
+- Limit command duration
+- Signal handling
+- Status preservation
+- Error handling
+- Integration patterns
+
+### date
+- Display current time
+- Custom formats
+- Time calculations
+- Timezone handling
+- Timestamp generation
 
 ## Networking Commands
 
@@ -80,3 +152,39 @@ This module covers essential command-line tools and networking commands that are
    - Network traffic analysis
    - Data extraction and reporting
    - Real-time monitoring
+
+6. `06_file_viewing.sh`: File content viewing and manipulation
+   - Cat, head, and tail usage
+   - Echo command patterns
+   - File monitoring
+   - Content extraction
+
+7. `07_sorting_filtering.sh`: Data sorting and filtering
+   - Sort command options
+   - Unique data handling
+   - Combining sort and uniq
+   - Real-world sorting examples
+
+8. `08_system_monitoring.sh`: System monitoring tools
+   - Top command usage
+   - Timeout patterns
+   - Date manipulation
+   - Resource monitoring
+
+9. `09_file_operations.sh`: Advanced file operations
+   - Directory management with ls and mkdir
+   - File organization
+   - Permission handling
+   - Batch operations
+
+10. `10_tee_examples.sh`: Output splitting and logging
+    - Basic tee usage
+    - Multi-file output
+    - Pipeline debugging
+    - Log rotation
+
+11. `11_diff_examples.sh`: File comparison tools
+    - Basic file comparison
+    - Directory diffs
+    - Patch creation
+    - Configuration management

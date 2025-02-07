@@ -70,6 +70,13 @@ Welcome to a comprehensive shell scripting tutorial designed for Mac OS and Linu
    - awk programming
    - Log analysis framework
 
+11. **Advanced Shell Features**
+   - Associative arrays and array operations
+   - Coprocesses and inter-process communication
+   - tmux for terminal multiplexing
+   - Process substitution patterns
+   - Advanced shell patterns and idioms
+
 ## How to Use This Tutorial
 
 Each module contains:
