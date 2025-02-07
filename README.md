@@ -98,6 +98,21 @@ Welcome to a comprehensive shell scripting tutorial designed for Mac OS and Linu
    - Real-world system administration tasks
    - Performance monitoring and tuning
 
+14. **SSH Examples and Best Practices**
+   - Basic SSH operations and key management
+   - Port forwarding and tunneling techniques
+   - Security hardening and best practices
+   - Advanced use cases:
+     - Database tunneling with auto-reconnect
+     - Load balancer and proxy configurations
+     - Kubernetes and container access
+     - Development environment setup
+   - Enhanced security measures:
+     - Two-factor authentication
+     - Real-time monitoring and alerts
+     - Intrusion detection and prevention
+     - Comprehensive security auditing
+
 ## How to Use This Tutorial
 
 Each module contains:
