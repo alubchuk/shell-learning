@@ -113,6 +113,66 @@ Welcome to a comprehensive shell scripting tutorial designed for Mac OS and Linu
      - Intrusion detection and prevention
      - Comprehensive security auditing
 
+15. **Performance Optimization**
+   - Script profiling techniques
+   - Memory usage optimization
+   - CPU usage optimization
+   - I/O performance techniques
+   - Parallel processing patterns
+
+16. **Modern Shell Tools**
+   - Modern CLI alternatives
+   - Shell frameworks
+   - Terminal multiplexers
+   - Development tools
+   - Productivity enhancements
+
+17. **Version Control Integration**
+   - Git hooks
+   - Automated workflows
+   - Repository maintenance
+   - CI/CD integration
+   - Custom Git commands
+
+18. **Testing and Quality Assurance**
+   - Testing frameworks
+   - Static analysis
+   - Code coverage
+   - Integration testing
+   - Test automation
+
+19. **Documentation and Maintenance**
+   - Documentation best practices and standards
+   - Function documentation and usage guides
+   - Automatic documentation generation
+   - Code maintenance and refactoring
+   - Code analysis and quality metrics
+   - Change management and versioning
+   - Development environment setup
+   - Code organization patterns
+
+20. **Error Handling and Logging**
+   - Comprehensive error handling strategies
+   - Error trapping and recovery
+   - Multi-level logging implementation
+   - Log rotation and management
+   - Real-time monitoring and alerts
+   - Performance tracking and profiling
+   - Debugging and troubleshooting
+   - System metrics collection
+
+21. **Security and Hardening**
+   - Secure coding practices and patterns
+   - Input validation and sanitization
+   - Secure file operations and permissions
+   - Privilege management and access control
+   - System hardening techniques
+   - Network security configuration
+   - Security auditing and compliance
+   - Vulnerability assessment
+   - Intrusion detection and prevention
+   - Security reporting and documentation
+
 ## How to Use This Tutorial
 
 Each module contains:
